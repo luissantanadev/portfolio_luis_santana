@@ -17,6 +17,26 @@ Este é o site do meu portfólio profissional, desenvolvido em HTML, CSS e JavaS
 2. Suba para seu próprio GitHub
 3. Ative o GitHub Pages nas configurações do repositório
 
+## Controle de versão
+
+Este projeto utiliza o [Git](https://git-scm.com/) para controle de versão. Comandos básicos:
+
+```sh
+# Adiciona todos os arquivos modificados
+git add .
+
+# Realiza um commit com mensagem
+git commit -m "Mensagem do commit"
+
+# Envia para o repositório remoto
+git push
+```
+
+Para clonar o projeto:
+```sh
+git clone https://github.com/luissantanadev/portfolio_luis_santana.git
+```
+
 ---
 
 © 2025 José Luis Santana Neto
