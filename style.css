@@ -1,0 +1,191 @@
+:root {
+    /* Cores do tema claro */
+    --bg-primary: #f9f9f9;
+    --bg-secondary: #ffffff;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --accent-color: #004aad;
+    --header-bg: #004aad;
+    --header-text: #ffffff;
+    --shadow-color: rgba(0,0,0,0.1);
+}
+
+[data-theme="dark"] {
+    /* Cores do tema escuro */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --accent-color: #3b82f6;
+    --header-bg: #000000;
+    --header-text: #ffffff;
+    --shadow-color: rgba(0,0,0,0.3);
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 20px;
+    text-align: center;
+}
+
+.header-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.header-top h1 {
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+}
+
+#theme-toggle {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#theme-toggle {
+    background: transparent;
+    border: 2px solid var(--header-text);
+    color: var(--header-text);
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background: rgba(255,255,255,0.1);
+    transform: scale(1.05);
+}
+
+[data-theme="dark"] .sun {
+    display: inline-block;
+}
+
+[data-theme="dark"] .moon {
+    display: none;
+}
+
+.sun {
+    display: none;
+}
+
+.moon {
+    display: inline-block;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section {
+    margin: 40px;
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--shadow-color);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+/* Links e textos */
+a {
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--text-secondary);
+}
+
+.skills-list li {
+    margin: 5px 0;
+}
+
+/* Estilo para ícones sociais na seção de contato */
+.social-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: flex-start; /* alinha à esquerda dentro da seção; mude para center se quiser centralizar */
+}
+
+.social-list li {
+    display: inline-block;
+}
+
+.social-list a {
+    display: inline-block;
+}
+
+.social-list img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 6px;
+    transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.social-list a:hover img,
+.social-list a:focus img {
+    transform: translateY(-3px) scale(1.05);
+    opacity: 0.95;
+}
+
+/* Acessibilidade: destaque no foco para navegadores por teclado */
+.social-list a:focus {
+    outline: 3px solid rgba(0,74,173,0.15);
+    outline-offset: 3px;
+}
+
+/* Responsivo: ícones menores em telas pequenas */
+@media (max-width: 480px) {
+    .social-list img {
+        width: 32px;
+        height: 32px;
+    }
+}
