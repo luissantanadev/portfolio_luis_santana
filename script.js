@@ -103,17 +103,39 @@ function initGitHubProjectImages() {
         if (parts.length !== 2) return;
         const [owner, reponame] = parts;
 
+        const wrapper = img.closest('.thumbnail-wrapper');
+        if (wrapper) wrapper.classList.add('loading');
+
         // tenta encontrar imagem no repositório
         const found = await findRepoImage(owner, reponame);
-        if (found) {
-            img.src = found;
-        } else {
-            img.src = defaultSrc; // fallback
-        }
+        const targetSrc = found || defaultSrc;
 
-        // caso a imagem falhe ao carregar (CORS, 404, etc), volta para o fallback
-        img.addEventListener('error', () => {
-            img.src = defaultSrc;
+        // carrega a imagem e aguarda load/error para remover o spinner
+        await new Promise((resolve) => {
+            // handlers
+            function cleanAndResolve() {
+                if (wrapper) wrapper.classList.remove('loading');
+                img.removeEventListener('load', onLoad);
+                img.removeEventListener('error', onError);
+                resolve();
+            }
+            function onLoad() {
+                cleanAndResolve();
+            }
+            function onError() {
+                // se erro ao carregar targetSrc (possivelmente URL raw), tenta fallback
+                if (img.src !== defaultSrc) {
+                    img.src = defaultSrc;
+                    return; // aguarda novo evento (load/error) para finalizar
+                }
+                cleanAndResolve();
+            }
+
+            img.addEventListener('load', onLoad);
+            img.addEventListener('error', onError);
+
+            // inicia o carregamento
+            img.src = targetSrc;
         });
     });
 }

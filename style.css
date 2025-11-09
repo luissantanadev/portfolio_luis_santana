@@ -143,6 +143,72 @@ a:hover {
     margin: 5px 0;
 }
 
+/* Layout dos projetos: miniatura à esquerda e conteúdo à direita */
+.project-item {
+    margin-bottom: 16px;
+}
+.project-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 8px;
+}
+.project-thumbnail {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex: 0 0 64px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.thumbnail-wrapper {
+    position: relative;
+    display: inline-block;
+}
+.thumbnail-wrapper .spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top-color: var(--accent-color);
+    box-sizing: border-box;
+    animation: spin 800ms linear infinite;
+    z-index: 2;
+}
+.thumbnail-wrapper.loading img {
+    opacity: 0.35;
+}
+@keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.project-content {
+    flex: 1 1 auto;
+}
+.project-title {
+    font-weight: 700;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+.project-title:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .project-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .project-thumbnail {
+        width: 48px;
+        height: 48px;
+        flex: 0 0 48px;
+    }
+}
+
 /* Estilo para ícones sociais na seção de contato */
 .social-list {
     list-style: none;
